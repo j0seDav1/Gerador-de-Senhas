@@ -109,7 +109,7 @@ body{
 .barra{
     background-color: var(--fundo-senha);
     height: 30px;
-    width: 100px;
+    width: 100%;
 }
 
 .fraca{
@@ -120,9 +120,25 @@ body{
     bottom: 30px;
 }
 
+.media{
+    background-color: yellow;
+    height: 30px;
+    width: 50%;
+    position: relative;
+    bottom: 30px;
+}
+
+.forte{
+    background-color: green;
+    height: 30px;
+    width: 100%;
+    position: relative;
+    bottom: 30px;
+}
 
 @media screen and (min-width: 768px) {
     .parametro-coluna__senha{
         flex-direction: row;
     }
 }
+
