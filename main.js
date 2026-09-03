@@ -28,3 +28,19 @@ function aumentar() {
     tamanhoSenha++;
     numeroSenha.textContent = tamanhoSenha
 }
+
+
+
+
+geraSenha()
+
+function geraSenha(){
+    let senha = ''
+
+    for(let i - 0; i < tamanhoSenha){
+        let numeroAleatorio = Math.random() * 26;
+        numeroAleatorio = Math.floor(numeroAleatorio)
+        senha = senha + letrasMaiusculas[numeroAleatorio]
+    }
+    campoSenha.valvue = senha;
+}
