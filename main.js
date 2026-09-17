@@ -15,6 +15,12 @@ const botoes =  document.querySelectorAll('.parametro-senha__botao')
 
 
 
+
+
+for(let i = 0; i < checkbox.length; i++){
+    checkbox[i].onclick = geraSenha
+}
+
 botoes[0].onclick = diminuir;
 
 function diminuir() {
