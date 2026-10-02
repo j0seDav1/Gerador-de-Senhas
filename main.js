@@ -1,52 +1,107 @@
 const numeroSenha = document.querySelector('.parametro-senha__texto')
-numeroSenha.textContent = 5;
 const campoSenha = document.querySelector('#campo-senha')
 
-campoSenha.value = 'Coloque a Senha'
+const forcaSenha = document.querySelector(".forca")
 
+campoSenha.value = 'Aqui vai aparecer a senha.'
+// OPEN IN WEBVIEW
 let letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-let letrasMinusculas = 'abcdefghijklmnopqrstuvwxyz'
-let numeros = '1234567890'
+// minusculas, numeros e simbolos
+let letrasMinusculas = 'qwertyuiopasdfghjklzxcvbnm'
+let numeros = '0123456789'
+let simbolos = '!@#$%&'
 
 tamanhoSenha = 8
-numeroSenha.textContent = tamanhoSenha
+numeroSenha.textContent = tamanhoSenha;
 
-const botoes =  document.querySelectorAll('.parametro-senha__botao')
-
-
-
-
+const checkbox = document.querySelectorAll('.checkbox input')
 
 for(let i = 0; i < checkbox.length; i++){
-    checkbox[i].onclick = geraSenha
+    checkbox[i].onclick = geraSenha;
 }
 
+// checkbox[0] = maiusculas
+// checkbox[1] = simbolos
+// checkbox[2] =
+// checkbox[3] =
+
+
+const botoes = document.querySelectorAll('.parametro-senha__botao')
+
+
+// pega o 1º botão = -
 botoes[0].onclick = diminuir;
 
-function diminuir() {
-    tamanhoSenha--;
-    numeroSenha.textContent = tamanhoSenha
+// função diminuir
+function diminuir(){
+    // diminui de 1 em 1 e mostra na tela
+
+    if(tamanhoSenha > 0){
+        tamanhoSenha--;
+        numeroSenha.textContent = tamanhoSenha;
+        geraSenha()
+    }
+
+   
 }
 
+// BOTAO DE AUMENTAR
 botoes[1].onclick = aumentar
 
-function aumentar() {
+function aumentar(){
+    // diminui de 1 em 1 e costra na tela
     tamanhoSenha++;
-    numeroSenha.textContent = tamanhoSenha
+    numeroSenha.textContent = tamanhoSenha;
+    geraSenha()
 }
 
 
-
-
+// fUNÇÃO DE CRIAR A SENHA ALEATÓRIA
 geraSenha()
 
 function geraSenha(){
-    let senha = ''
-
-    for(let i - 0; i < tamanhoSenha){
-        let numeroAleatorio = Math.random() * 26;
-        numeroAleatorio = Math.floor(numeroAleatorio)
-        senha = senha + letrasMaiusculas[numeroAleatorio]
+   
+    let alfabeto = ''
+   
+    // Local que verifica qual checkbox foi clicada
+    // e adiciona no alfabeto
+    if(checkbox[0].checked){
+        alfabeto = alfabeto + letrasMaiusculas
     }
-    campoSenha.valvue = senha;
+    if(checkbox[1].checked){
+        alfabeto = alfabeto + letrasMinusculas
+    }
+    if(checkbox[2].checked){
+        alfabeto = alfabeto + numeros
+    }
+    if(checkbox[3].checked){
+        alfabeto = alfabeto + simbolos
+    }
+   
+
+   
+    let senha = ''
+    // LOOP - Repetições
+    for(let i = 0; i < tamanhoSenha; i++){
+        let numeroAleatorio = Math.random() * alfabeto.length;
+        numeroAleatorio = Math.floor(numeroAleatorio)
+        senha = senha + alfabeto[numeroAleatorio]
+    }
+    campoSenha.value = senha;
+    classificarSenha()
+}
+
+
+// Função para classificar a senha
+function classificarSenha(){
+
+    forcaSenha.classList.remove('forte', 'media', 'fraca')
+
+    if(tamanhoSenha > 11){
+        forcaSenha.classList.add('forte')
+    }else if(tamanhoSenha < 7){
+        forcaSenha.classList.add('fraca')
+    }else{
+        forcaSenha.classList.add('media')
+    }
 }
